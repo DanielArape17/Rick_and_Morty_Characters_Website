@@ -1,10 +1,9 @@
 const firstApiUrl = 'https://rickandmortyapi.com/api/character';
 let currentApiUrl = '';
 
-const favoriteCharacters = JSON.parse(localStorage.getItem('favoriteCharacters')) || [];
+let bodyId = document.body.id;
 
-const btnNextPage = document.getElementById('btnNextPage');
-const btnPrevPage = document.getElementById('btnPrevPage');
+const favoriteCharacters = JSON.parse(localStorage.getItem('favoriteCharacters')) || [];
 
 const pagination = {
   current: '',
@@ -12,25 +11,18 @@ const pagination = {
   prev: ''
 };
 
-btnNextPage.addEventListener('click', () => {
-  if(pagination.next) loadPage(pagination.next);
-});
-
-btnPrevPage.addEventListener('click', () => {
-  if(pagination.prev) loadPage(pagination.prev);
-});
-
 async function getData(currentPage) {
   await fetch(currentPage)
   .then(response => response.json())
   .then(data => {
     pagination.current = currentPage;
-    pagination.next = data.info.next;
-    pagination.prev = data.info.prev;
+    //pagination.next = data.info.next;
+    //pagination.prev = data.info.prev;
     console.log(data);
 
     clearCards();
-    cards(data.results);
+    
+    bodyId === 'indexPage' ? cards(data.results) : cards(data);
   })
 };
 
@@ -41,7 +33,6 @@ const loadPage = (url) => {
 
 const cards = (characters) => {
   let charactersContainer = document.getElementById('charactersContainer');
-
   characters.forEach(character => {
     const isFavorite = favoriteCharacters.includes(character.id);
     const heartIcon = isFavorite ? '♥' : '♡';
@@ -90,4 +81,26 @@ const toggleFavoriteCharacter = (btnHeartCharacterId) => {
   localStorage.setItem("favoriteCharacters", JSON.stringify(favoriteCharacters));
 }
 
-loadPage(firstApiUrl);
+
+if(bodyId === 'indexPage'){
+  const btnNextPage = document.getElementById('btnNextPage');
+  const btnPrevPage = document.getElementById('btnPrevPage');
+
+  btnNextPage.addEventListener('click', () => {
+    if(pagination.next) loadPage(pagination.next);
+  });
+
+  btnPrevPage.addEventListener('click', () => {
+    if(pagination.prev) loadPage(pagination.prev);
+  });
+  loadPage(firstApiUrl);
+
+}
+else{
+  favoriteCharactersString = favoriteCharacters.toString();
+  
+  favoriteCharactersUrl = `${firstApiUrl}/${favoriteCharactersString}`;
+  console.log(favoriteCharactersUrl)
+
+  loadPage(favoriteCharactersUrl); 
+}
