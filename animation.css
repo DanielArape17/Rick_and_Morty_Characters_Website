@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+*{
+  font-family: "Chakra Petch", sans-serif;;
+}
+
+/* title */
+
+@keyframes cosmic-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.cosmic-text {
+  background: linear-gradient(90deg, #ff0000, #4ecdc4, #45b7d1, #96ceb4, #f6d66f);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: cosmic-shine 4s ease-in-out infinite;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(79, 205, 196, 0.3),
+    0 0 30px rgba(69, 183, 209, 0.2);
+  display: inline-block;
+}
+
+.character-info-shadow{
+  text-shadow: 1px 1px 3px rgba(59, 182, 206, 0.8), 0 0 8px rgba(59, 182, 206, 0.4);
+}
+
+.text-shadow-glow { 
+  text-shadow: 0 0 10px rgba(242, 209, 74, 0.8), 2px 2px 4px #65367d, -1px -1px 2px #65367d;
+}
+
+.statusPulseAlive {
+  animation: statusPulseAlive 2s infinite ease-in-out;
+}
+
+.statusPulseDead {
+  animation: statusPulseDead 2s infinite ease-in-out;
+}
+
+@keyframes statusPulseAlive {
+  0%, 100% { 
+    box-shadow: 
+      0 0 10px #7eb82e99,
+      inset 0 0 5px #7eb82e33;
+    background-color: #7eb82e33;
+  }
+  50% { 
+    box-shadow: 
+      0 0 16px #7eb82ee6,
+      inset 0 0 8px #7eb82e66;
+    background-color: #7eb82e66;
+  }
+}
+
+@keyframes statusPulseDead {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px hsl(0 75% 60% / 0.6),
+      inset 0 0 10px #e64c4c33;
+    background-color: #e64c4c33;
+  }
+  50% { 
+    box-shadow: 
+      0 0 35px hsl(0 75% 60% / 0.9),
+      inset 0 0 15px #e64c4c66;
+    background-color: #e64c4c66;
+  }
+}
+
+  

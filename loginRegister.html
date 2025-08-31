@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="flex flex-col bg-[#1d1d22] items-center text-center justify-center min-h-dvh p-8">
+  <div class="cosmic-container fixed w-screen h-screen -z-10 pointer-events-none top-[0] left-[0] bg-radial from-[#0a0a18] to-[#323642]">
+    <div class="cosmic-background absolute"></div>
+    <!-- Las partículas se generarán con JavaScript -->
+    <svg id="portal" class="hidden absolute" width="300" height="300" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="portalGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00ff4c" stop-opacity="0.8" />
+          <stop offset="30%" stop-color="#00cc3d" stop-opacity="0.6" />
+          <stop offset="70%" stop-color="#009930" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#003b15" stop-opacity="0.1" />
+        </radialGradient>
+        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      
+      <!--Portal circle with glow -->
+      <circle id="glow-circle"  cx="25" cy="25" r="20" fill="url(#portalGradient)" filter="url(#glow)" class="animate-portal-pulse" />
+
+      <!--Inner portal details -->
+      <circle id="principal-circle" cx="25" cy="25" r="15" fill="none" stroke="#00ff4c" stroke-width="1" opacity="0.7" class="animate-portal-rotate"/>
+      <circle id="secondary-circle" cx="25" cy="25" r="10" fill="none" stroke="#00cc3d" stroke-width="0.5" opacity="0.5" class="animate-portal-rotate-inverse" />
+      <circle id="central-circle" cx="25" cy="25" r="5" fill="#00ff4c" opacity="0.9" class="animate-portal-pulse" />
+    </svg>
+  </div>
+  <main>
+    <div id="registerView" class="hidden flex flex-col gap-5 bg-[#171c2c66] backdrop-blur-md p-4 border border-[#c0f3c4] rounded-2xl">
+      <form id="formRegister" action="" class="flex flex-col gap-5">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-4xl font-bold text-[#c0f3c4]">Dimensional Registry</h1>
+          <p class="text-[#c0f3c4] i">Join the Council of Ricks. Create your interdimensional profile.</p>
+        </div>
+
+        <div class="flex flex-col items-start gap-2">
+          <label for="name" class="text-sm font-medium text-[#00FF00]">Scientist First Name</label>
+          <input type="text" name="name" id="registerName" placeholder="Rick" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">        
+        </div>
+        
+        <div class="flex flex-col items-start gap-2">
+          <label for="lastName" class="text-sm font-medium text-[#00FF00]">Scientist Last Name</label>
+          <input type="text" name="lastName" id="registerLastName"  placeholder="Sanchez" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+        </div>
+        
+        <div class="flex flex-col items-start gap-2">
+          <label for="email" class="text-sm font-medium text-[#00FF00]">Interdimensional Email</label>
+          <input type="email" name="email" id="registerEmail" placeholder="rick.sanchez@dimension.c137" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+        </div>
+        
+        <div class="flex flex-col items-start gap-2">
+          <label for="password" class="text-sm font-medium text-[#00FF00]">Portal Security Code</label>
+          <input type="password" name="password" id="registerPassword" placeholder="Schwifty137!" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+        </div>
+        
+        <input type="submit" value="Generate Portal Key" class="bg-[#00FF00] p-2 rounded-2xl text-black font-bold cursor-pointer shadow-[0_4px_20px_#33FF0033] duration-500 hover:scale-105 hover:shadow-[0_4px_24px_#33FF0033]">
+        <div class="rounded-lg backdrop-blur-lg border border-[#007F4BB3] p-2">
+            <p class="text-[#c0f3c4]">La contraseña debe cumplir con los siguientes requisitos:</p>
+            <ul>
+              <li class="text-[#c0f3c4]">Mínimo 8 caracteres y máximo 30.</li>
+              <li class="text-[#c0f3c4]">Al menos una letra minúscula (a-z).</li>
+              <li class="text-[#c0f3c4]">Al menos una letra mayúscula (A-Z).</li>
+              <li class="text-[#c0f3c4]">Al menos un número (0-9).</li>
+              <li class="text-[#c0f3c4]">Al menos uno de los siguientes caracteres especiales: <strong>! * . [ ] # @ &</strong>.</li>
+            </ul>
+        </div>
+      </form>
+      <div class="text-center pt-4 border-t border-[#c0f3c4] justify-center flex gap-1">
+        <p class="text-sm text-[#c0f3c4]">
+          Already part of the Council?
+        </p>
+        <button id="switchToLogin" type="button" class="text-sm text-[#00FF00] hover:text-[#7AFF7A] cursor-pointer hover:underline focus:outline-none">
+          Access Portal
+        </button>
+      </div>
+
+      <p class="text-xs text-[#c0f3c4] opacity-70">
+        "Nobody exists on purpose. Nobody belongs anywhere. We're all going to die."
+      </p>
+    </div>
+    
+    <div id="loginView" class="flex flex-col gap-5 bg-[#171c2c66] backdrop-blur-md p-4 p-4 border border-[#c0f3c4] rounded-2xl">
+      <form id="formLogin" action="" class="flex flex-col gap-5">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-4xl font-bold text-[#c0f3c4]">Portal Access</h1>
+          <p class="text-[#c0f3c4]">Welcome back, scientist. Enter your credentials to access the multiverse.</p>
+        </div>
+        
+        <div class="flex flex-col items-start gap-2">
+          <label for="email" class="text-sm font-medium text-[#00FF00]">Interdimensional Email</label>
+          <input id="loginEmail" type="email" name="email" placeholder="rick.sanchez@dimension.c137" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+        </div>
+
+        <div class="flex flex-col items-start gap-2">
+          <label for="password" class="text-sm font-medium text-[#00FF00]">Portal Password</label>
+          <input id="loginPassword" type="password" name="password" placeholder="Password" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+        </div>
+        
+        <input type="submit" value="Initialize Portal" class="bg-[#00FF00] p-2 rounded-2xl text-black font-bold cursor-pointer shadow-[0_4px_20px_#33FF0033] duration-500 hover:scale-105 hover:shadow-[0_4px_24px_#33FF0033]">
+      </form>
+      
+      <div class="text-center pt-4 border-t border-[#c0f3c4] flex justify-center gap-1">
+        <p class="text-sm text-[#c0f3c4]">New to the multiverse? </p>
+        <button id="switchToRegister" type="button" class="text-[#00FF00] text-sm hover:text-[#7AFF7A] cursor-pointer hover:underline focus:outline-none">
+          Create Portal Access
+        </button>
+      </div>
+
+      <p class="text-xs text-[#c0f3c4] opacity-70">
+        "Sometimes science is more art than science, Morty."
+      </p>
+    </div>
+  </main>
+
+  
+  <script src="./animation.js" ></script>
+</body>
+<script type="module">
+  import bcrypt from "https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/+esm";
+
+  const registerView = document.getElementById('registerView');
+
+  const registerName  = document.getElementById('registerName');
+  const registerLastName = document.getElementById('registerLastName');
+  const registerEmail = document.getElementById('registerEmail');
+  const registerPassword = document.getElementById('registerPassword');
+  const formRegister = document.getElementById('formRegister');
+  const switchToLogin = document.getElementById('switchToLogin');
+  
+  const loginView = document.getElementById('loginView');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const formLogin = document.getElementById('formLogin');
+  const switchToRegister = document.getElementById('switchToRegister');
+
+  const nameRegex = /^[a-z\sáéíóú']{3,20}$/i;
+  const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+  const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!*.[\]#@&])[a-zA-Z\d!*.[\]#@&]{8,30}$/;
+
+  const validateInput = (name, value, regex) => {
+    if (!value) {
+      alert(`The ${name} field cannot be empty.`);
+      return false;
+    } else if (!regex.test(value)) {
+      alert(`The ${name} field is invalid.`);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  
+  //const checkPasswordStrength = () => {}
+
+  formRegister.addEventListener("submit", (event) =>{
+    event.preventDefault();
+
+    if (
+      validateInput("Name", registerName.value, nameRegex) &&
+      validateInput("Last Name", registerLastName.value, nameRegex) &&
+      validateInput("Email", registerEmail.value, emailRegex) &&
+      validateInput("Password", registerPassword.value, passwordRegex)
+    ) {
+      const salt = bcrypt.genSaltSync(12);
+      const hash = bcrypt.hashSync(registerPassword.value, salt);
+
+      const user = {
+        name: registerName.value,
+        lastName: registerLastName.value,
+        email: registerEmail.value,
+        password: hash,
+        favoriteCharacters: []
+      };
+
+      alert("Formulario enviado correctamente.");
+      localStorage.setItem('user', JSON.stringify(user));
+      window.location.href = 'index.html';
+    }
+  });
+
+  formLogin.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if(
+      loginEmail.value === user.email &&
+      bcrypt.compareSync(loginPassword.value, user.password)
+    ){
+      window.location.href = 'index.html';
+    }
+    else{
+      alert("Invalid email or password. Please try again.");
+    }
+  })
+
+
+  //Animacion del cambio del Login y Register
+
+  switchToRegister.addEventListener('click', () => { 
+    activatePortal(true)
+  });
+
+  switchToLogin.addEventListener('click', () => {
+    activatePortal(false)
+  });
+
+</script>
+</html>
