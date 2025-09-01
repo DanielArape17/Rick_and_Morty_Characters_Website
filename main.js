@@ -1,14 +1,16 @@
 const firstApiUrl = 'https://rickandmortyapi.com/api/character';
 let currentApiUrl = '';
 
-//heart
-
 const heartPlay = './svg/heartPlay.svg'
 const heartNoPlay = './svg/heartNoPlay.svg'
 
 let bodyId = document.body.id;
 
 const user = JSON.parse(localStorage.getItem('user'));
+
+if (!user) {
+    window.location.href = './loginRegister.html';
+}
 
 const pagination = {
   current: '',
