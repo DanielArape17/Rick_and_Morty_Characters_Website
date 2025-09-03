@@ -81,7 +81,7 @@ const cards = (characters) => {
         </div>
 
         <div class="bg-gradient-to-br from-[#2a4365] to-[#2c5282] h-64">
-          <img src="${character.image}" alt="${character.name}" loading="lazy" onload="imageUploaded(this)" class="opacity-0">
+          <img src="${character.image}" alt="${character.name}" loading="lazy" onload="imageUploaded(this)" class="opacity-0 w-full object-cover">
         </div>
 
         <div class="grid grid-cols-[85%_15%] p-1 bg-[#0d092b]/10 backdrop-blur-md rounded-b-lg duration-500 ease-in group-hover:bg-[#0d092b]/70">
