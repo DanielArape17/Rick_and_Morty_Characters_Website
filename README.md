@@ -1,5 +1,42 @@
 # Rick_and_Morty_Characters_Website
-A web application that displays characters from the Rick and Morty series using its official API.
+A web application that displays characters from the Rick and Morty series using the official API.
+
+---
+
+## Requirements
+
+1. **Character Listing**
+    - Fetch and display all characters from the official API.
+    - Implement **pagination** to navigate through the characters.
+
+2. **Favorites**
+    - Each character card must include a **heart icon**.
+    - Clicking the heart should add the character to a **favorites list**.
+    - Favorite characters must be stored in **localStorage** so they persist after page reload.
+
+3. **Favorites Page**
+    - Create a separate page that displays only the characters saved as favorites.
+    - On this page, users should be able to **remove** characters from their favorites list.
+
+---
+
+## Objective
+
+Practice API consumption, pagination implementation, DOM manipulation, event handling, and using localStorage for data persistence.
+
+---
+
+## Optional
+
+- Create a **login/register** page with proper validations.
+- When a user registers, their information should be saved in localStorage.
+- Access to the characters should require logging in.
+- The registration form should request: first name, last name, email, and password.
+- Each user should have their own list of favorite characters.
+
+- **Extra:** Encrypt the user's password at registration and decrypt it only for verification during login. Use a keyword as an encryption key, which should be hidden in a `.env` file (this file should not be accessible from the frontend).
+
+---
 
 Crea una aplicación web que muestre los personajes de la serie *Rick and Morty* utilizando su API oficial.
 

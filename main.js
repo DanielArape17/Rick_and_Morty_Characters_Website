@@ -1,8 +1,31 @@
+/**
+ * @typedef {Object} Character
+ * @property {number} id - Character ID
+ * @property {string} name - Character name
+ * @property {string} status - Character status (Alive, Dead, unknown)
+ * @property {string} species - Character species
+ * @property {string} gender - Character gender
+ * @property {string} image - URL of the character's image
+ * @property {string[]} episode - List of episodes the character appears in
+ */
+
+/**
+ * @typedef {Object} User
+ * @property {string} name - User name
+ * @property {number[]} favoriteCharacters - Array of favorite character IDs
+ */
+
+/** @type {string} Base URL for the Rick and Morty API */
 const firstApiUrl = 'https://rickandmortyapi.com/api/character';
+
+/** @type {string} Stores the current API URL */
 let currentApiUrl = '';
 
+/** @type {HTMLElement} Buttons for navigating to next and previous pages */
 const btnNextPage = document.getElementById('btnNextPage');
 const btnPrevPage = document.getElementById('btnPrevPage');
+
+/** @type {string} Path to the filled heart icon for favorites and non-favorites*/
 const heartPlay = './svg/heartPlay.svg'
 const heartNoPlay = './svg/heartNoPlay.svg'
 
@@ -20,19 +43,25 @@ const pagination = {
   prev: ''
 };
 
+/**
+ * Updates the state of pagination buttons based on available pages
+ * @returns {void}
+ */
 const updatePaginationButtons = () => {
-  // Para el botón "Anterior"
   btnPrevPage.classList.toggle('cursor-not-allowed', pagination.prev == null);
   btnPrevPage.classList.toggle('cursor-pointer', pagination.prev != null);
   btnPrevPage.disabled = pagination.prev == null;
 
-  // Para el botón "Siguiente"
   btnNextPage.classList.toggle('cursor-not-allowed', pagination.next == null);
   btnNextPage.classList.toggle('cursor-pointer', pagination.next != null);
   btnNextPage.disabled = pagination.next == null;
 };
 
-
+/**
+ * Fetches data from the Rick and Morty API
+ * @param {string} currentPage - URL of the page to load
+ * @returns {Promise<void>} - Promise that resolves when operations complete
+ */
 async function getData(currentPage) {
   await fetch(currentPage)
   .then(response => response.json())
@@ -55,6 +84,11 @@ const loadPage = (url) => {
   currentApiUrl = url;
 };
 
+/**
+ * Creates character cards in the container
+ * @param {Character[]} characters - Array of character objects
+ * @returns {void}
+ */
 const cards = (characters) => {
   let charactersContainer = document.getElementById('charactersContainer');
 
@@ -131,6 +165,11 @@ const clearCards = () => {
   charactersContainer.innerHTML = '';
 };
 
+/**
+ * Handles the favorite button click event
+ * @param {number} characterId - ID of the character to add/remove from favorites
+ * @returns {void}
+ */
 const toggleFavoriteCharacter = (btnHeartCharacterId) => {
   const btnHeartId = document.getElementById(`btnHeart${btnHeartCharacterId}`);
   const isPressed = btnHeartId.getAttribute('aria-pressed') === "true"; 

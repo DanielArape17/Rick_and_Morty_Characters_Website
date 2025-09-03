@@ -1,7 +1,15 @@
-// Seleccionar elementos del DOM
+/**
+ * @fileoverview Cosmic animation system for creating particle effects and portal transitions
+ * @module CosmicAnimation
+ */
+
 const cosmicBackground = document.querySelector('.cosmic-background');
 const particleContainer = document.querySelector('.cosmic-container');
 
+/**
+ * Creates and returns an array of particle elements with random properties
+ * @returns {Array<{element: HTMLElement, size: number, color: string}>} Array of particle objects
+ */
 const createParticles = () => {
   let particles = [];
 
@@ -34,6 +42,10 @@ const createParticles = () => {
   return particles
 };
 
+/**
+ * Animates the background and creates particle movement effects
+ * @returns {void}
+ */
 const backgroundAnimated = () => {
   // Crear partículas
   const particles = createParticles();
@@ -90,6 +102,11 @@ const backgroundAnimated = () => {
   });
 };
 
+/**
+ * Animates the portal transition between login and register views
+ * @param {boolean} isSwitchingToRegister - Direction of the transition (true: to register, false: to login)
+ * @returns {void}
+ */
 const portalAnimation = (isSwitchingToRegister) => {
   const registerView = document.getElementById('registerView');
   const loginView = document.getElementById('loginView');
@@ -179,6 +196,11 @@ const portalAnimation = (isSwitchingToRegister) => {
     });
 }
 
+/**
+ * Activates the portal animation at a random position near the center of the screen
+ * @param {boolean} isSwitchingToRegister - Direction of the transition
+ * @returns {void}
+ */
 const activatePortal = (isSwitchingToRegister) => {
   const { innerWidth: w, innerHeight: h } = window;
   const centerX = w / 2 - 150; // Centrar el SVG (300px de ancho / 2)
@@ -199,6 +221,11 @@ const activatePortal = (isSwitchingToRegister) => {
   portalAnimation(isSwitchingToRegister);
 };
 
+/**
+ * Initializes the cosmic animation system when the DOM is fully loaded
+ * @event DOMContentLoaded
+ * @listens document
+ */
 document.addEventListener('DOMContentLoaded', (event) => {
   backgroundAnimated()
 
