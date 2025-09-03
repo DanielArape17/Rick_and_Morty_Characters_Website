@@ -6,11 +6,40 @@
   <title>Document</title>
   <link rel="stylesheet" href="./animation.css">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 </head>
-<body id="favoritesCharactersPage" style="background-color: #1d1d22;">
-  <main id="charactersContainer" class="grid grid-cols-4 gap-4 p-8">
+<body id="favoritesCharactersPage">
+  
+  <div class="cosmic-container fixed w-screen h-screen -z-10 pointer-events-none top-[0] left-[0] bg-linear-135 from-[#060628] to-[#65357d]">
+    <div class="cosmic-background absolute"></div>
+    <!-- Las partículas se generarán con JavaScript -->
+  </div>
+  
+  <nav class="flex px-4 justify-between items-center mb-6 bg-[#25009e21] shadow-[0_4px_30px_#0000001a] backdrop-blur-md">
+    <div>
+      <a href="./index.html">
+        <img src="./svg/logo.svg" alt="Rick & Morty Logo">
+      </a>
+    </div>
+    <div class="flex gap-4">
+      <a href="https://github.com/DanielArape17" target="_blank">
+        <img src="./svg/github.svg" alt="Github Logo" class="w-7 h-7 stroke-[#e74c3c] duration-500 hover:scale-120">
+      </a>
+      <a href="./favoritesCharacters.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart transition-all duration-500 hover:scale-120 hover:fill-[#e74c3c]" data-lov-id="src/components/CharacterCard.tsx:192:10" data-lov-name="Heart" data-component-path="src/components/CharacterCard.tsx" data-component-line="192" data-component-file="CharacterCard.tsx" data-component-name="Heart" data-component-content="%7B%22className%22%3A%22transition-all%20duration-500%20group-hover%3Adrop-shadow-%5B0_0_8px_currentColor%5D%22%7D"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+      </a>
+    </div>
+  </nav>
 
+  <main class="flex flex-col text-center">
+    <h1 id="title" class="text-4xl md:text-6xl font-bold cosmicText cosmic-text relative">Favorites Lab</h1>
+    <h2 class="text-xl md:text-2xl text-[#42b4ca] font-medium drop-shadow-[0_0_5px_rgba(34,211,238,0.5)] mt-1">Where my favorite specimens are stored</h2>
+    <p class="text-lg md:text-xl text-[#97ce4c] drop-shadow-[0_0_5px_rgba(110,231,183,0.4)] mt-6">Your personal interdimensional collection</p>
+    <div id="charactersContainer" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-6 p-8"></div>
   </main>
+
   <script src="./main.js"></script>
+  <script src="./animation.js"></script>
 </body>
 </html>

@@ -62,10 +62,18 @@
         
         <div class="flex flex-col items-start gap-2">
           <label for="password" class="text-sm font-medium text-[#00FF00]">Portal Security Code</label>
-          <input type="password" name="password" id="registerPassword" placeholder="Schwifty137!" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+          <div class="flex w-full relative">
+            <input type="password" name="password" id="registerPassword" placeholder="Schwifty137!" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+            <button id = "registerPasswordVisibility" onclick="passwordVisibility('registerPassword', 'registerEye')" type="button" class="absolute right-2 bottom-[5px] cursor-pointer">
+              <svg id="registerEye" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-closed-icon lucide-eye-closed"><path d="m15 18-.722-3.25"/><path d="M2 8a10.645 10.645 0 0 0 20 0"/><path d="m20 15-1.726-2.05"/><path d="m4 15 1.726-2.05"/><path d="m9 18 .722-3.25"/></svg>
+              <svg id="registerEyeClosed" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye hidden"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="h-2 w-full rounded-md bg-[#1a331a] overflow-hidden mt-1">
+            <div id="strengthFill" class="h-full rounded-md transition-all duration-500"></div>
+          </div>
         </div>
-        
-        <input type="submit" value="Generate Portal Key" class="bg-[#00FF00] p-2 rounded-2xl text-black font-bold cursor-pointer shadow-[0_4px_20px_#33FF0033] duration-500 hover:scale-105 hover:shadow-[0_4px_24px_#33FF0033]">
+
         <div class="rounded-lg backdrop-blur-lg border border-[#007F4BB3] p-2">
             <p class="text-[#c0f3c4]">La contraseña debe cumplir con los siguientes requisitos:</p>
             <ul>
@@ -76,6 +84,8 @@
               <li class="text-[#c0f3c4]">Al menos uno de los siguientes caracteres especiales: <strong>! * . [ ] # @ &</strong>.</li>
             </ul>
         </div>
+        
+        <input type="submit" value="Generate Portal Key" class="bg-[#00FF00] p-2 rounded-2xl text-black font-bold cursor-pointer shadow-[0_4px_20px_#33FF0033] duration-500 hover:scale-105 hover:shadow-[0_4px_24px_#33FF0033]">
       </form>
       <div class="text-center pt-4 border-t border-[#c0f3c4] justify-center flex gap-1">
         <p class="text-sm text-[#c0f3c4]">
@@ -105,7 +115,13 @@
 
         <div class="flex flex-col items-start gap-2">
           <label for="password" class="text-sm font-medium text-[#00FF00]">Portal Password</label>
-          <input id="loginPassword" type="password" name="password" placeholder="Password" class="px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+          <div class="flex w-full relative">
+            <input id = "loginPassword" type="password" name="password" placeholder="Password" class=" px-3 py-2 w-full bg-black text-sm text-[#97ce4c] rounded-md border border-[#206020] shadow-[0_4px_20px_#33FF0033] placeholder-[#c0f3c4] focus:outline-none">
+            <button id = "loginPasswordVisibility" onclick="passwordVisibility('loginPassword', 'loginEye')" type="button" class="absolute right-2 bottom-[5px] cursor-pointer">
+              <svg id="loginEye" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-closed-icon lucide-eye-closed"  ><path d="m15 18-.722-3.25"/><path d="M2 8a10.645 10.645 0 0 0 20 0"/><path d="m20 15-1.726-2.05"/><path d="m4 15 1.726-2.05"/><path d="m9 18 .722-3.25"/></svg>
+              <svg id="loginEyeClosed" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye hidden"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
         </div>
         
         <input type="submit" value="Initialize Portal" class="bg-[#00FF00] p-2 rounded-2xl text-black font-bold cursor-pointer shadow-[0_4px_20px_#33FF0033] duration-500 hover:scale-105 hover:shadow-[0_4px_24px_#33FF0033]">
@@ -124,7 +140,7 @@
     </div>
   </main>
 
-  
+  <script src="loginRegister.js"></script>
   <script src="./animation.js" ></script>
 </body>
 <script type="module">
@@ -136,6 +152,7 @@
   const registerLastName = document.getElementById('registerLastName');
   const registerEmail = document.getElementById('registerEmail');
   const registerPassword = document.getElementById('registerPassword');
+  const strengthFill = document.getElementById('strengthFill');
   const formRegister = document.getElementById('formRegister');
   const switchToLogin = document.getElementById('switchToLogin');
   
@@ -162,10 +179,38 @@
     }
   }
 
-  
-  //const checkPasswordStrength = () => {}
+  registerPassword.addEventListener('input', () => {
+    let fill = 0;
+    let password = registerPassword.value
 
-  formRegister.addEventListener("submit", (event) =>{
+    if (password.length >= 8 && password.length <= 30) fill++;
+    if (/[a-z]/.test(password)) fill++;
+    if (/[A-Z]/.test(password)) fill++;
+    if (/[0-9]/.test(password)) fill++;
+    if (/[!*.[\]#@&]/.test(password)) fill++;
+
+    const strengthConfig = [
+      ['w-[0%]', 'bg-red-500'], 
+      ['w-[20%]', 'bg-orange-500'], 
+      ['w-[40%]', 'bg-yellow-500'],
+      ['w-[60%]', 'bg-blue-500'],
+      ['w-[80%]', 'bg-green-500'],
+      ['w-[100%]', 'bg-green-700']
+    ]
+
+    strengthConfig.forEach((configArray) => { 
+      configArray.forEach(config => {
+        strengthFill.classList.remove(config);
+      });
+      
+    });
+
+    strengthFill.classList.add(strengthConfig[fill][0]);
+    strengthFill.classList.add(strengthConfig[fill][1]);
+    console.log(strengthFill)
+  })
+  
+  formRegister.addEventListener("submit", (event) => {
     event.preventDefault();
 
     if (

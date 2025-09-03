@@ -1,6 +1,8 @@
 const firstApiUrl = 'https://rickandmortyapi.com/api/character';
 let currentApiUrl = '';
 
+const btnNextPage = document.getElementById('btnNextPage');
+const btnPrevPage = document.getElementById('btnPrevPage');
 const heartPlay = './svg/heartPlay.svg'
 const heartNoPlay = './svg/heartNoPlay.svg'
 
@@ -18,6 +20,19 @@ const pagination = {
   prev: ''
 };
 
+const updatePaginationButtons = () => {
+  // Para el botón "Anterior"
+  btnPrevPage.classList.toggle('cursor-not-allowed', pagination.prev == null);
+  btnPrevPage.classList.toggle('cursor-pointer', pagination.prev != null);
+  btnPrevPage.disabled = pagination.prev == null;
+
+  // Para el botón "Siguiente"
+  btnNextPage.classList.toggle('cursor-not-allowed', pagination.next == null);
+  btnNextPage.classList.toggle('cursor-pointer', pagination.next != null);
+  btnNextPage.disabled = pagination.next == null;
+};
+
+
 async function getData(currentPage) {
   await fetch(currentPage)
   .then(response => response.json())
@@ -26,9 +41,8 @@ async function getData(currentPage) {
     if(bodyId === 'indexPage'){
       pagination.next = data.info.next;
       pagination.prev = data.info.prev;
+      updatePaginationButtons();
     }
-    
-    console.log(data);
 
     clearCards();
     
@@ -50,7 +64,6 @@ const cards = (characters) => {
     const ariaPressed = isFavorite ? "true" : "false"
     const buttonClass = isFavorite ? "shadow-[#e74d3c99] bg-[#551e2e] text-[#e2a8a1]" : "border border-[#33DDFF] shadow-[#3bb6ce4d]";
     const status = character.status
-    console.log(status)
     
     statusColor =
       status == "Alive" ? "#7eb82e" :
@@ -145,15 +158,18 @@ const toggleFavoriteCharacter = (btnHeartCharacterId) => {
 
 
 if(bodyId === 'indexPage'){
-  const btnNextPage = document.getElementById('btnNextPage');
-  const btnPrevPage = document.getElementById('btnPrevPage');
-
   btnNextPage.addEventListener('click', () => {
     if(pagination.next) loadPage(pagination.next);
+    window.scrollTo({
+        top: 0,
+    });
   });
 
   btnPrevPage.addEventListener('click', () => {
     if(pagination.prev) loadPage(pagination.prev);
+    window.scrollTo({
+        top: 0,
+    });
   });
   loadPage(firstApiUrl);
 
